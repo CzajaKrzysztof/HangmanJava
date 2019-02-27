@@ -1,0 +1,21 @@
+public class Country {
+    private String name;
+    private String capital;
+
+    public Country(String name, String capital) {
+        this.name = name;
+        this.capital = capital;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getCapital() {
+        return this.capital;
+    }
+
+    public String toString() {
+        return this.getName() + " " + this.getCapital();
+    }
+}
