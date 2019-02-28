@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Word {
     private Country chosenCountry;
-    private String dashedWord;
     private ArrayList<String> correctGuesses;
 
     public Word() {
@@ -20,7 +19,29 @@ public class Word {
 
     }
 
-    private String makeDashedWord(ArrayList<String> list) {
-        
+    private String makeDashedWord() {
+        String dashedWord = "";
+        String capital = this.chosenCountry.getCapital().toUpperCase();
+        for (int i = 0; i < capital.length(); i++) {
+            if (this.correctGuesses.contains("" + capital.charAt(i))) {
+                dashedWord += "" + capital.charAt(i) + " ";
+            } 
+            else {
+                dashedWord += "_ ";
+            }
+        }
+        return dashedWord;
+    }
+
+    public String getDashedWord() {
+        return this.makeDashedWord();
+    }
+
+    public String getCountryName() {
+        return this.chosenCountry.getCapital();
+    }
+
+    public String getCapital() {
+        return this.chosenCountry.getCapital();
     }
 }
