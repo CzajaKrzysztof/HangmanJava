@@ -33,6 +33,23 @@ public class Word {
         return dashedWord;
     }
 
+    public boolean isWordGuessed() {
+        boolean result = false;
+        String dashedWord = this.makeDashedWord();
+        if (dashedWord.contains("_")) {
+            result = true;
+        }
+        return result;
+    }
+
+    public boolean isInputInCapital(String input) {
+        boolean result = false;
+        if (chosenCountry.getCapital().toUpperCase().contains(input)) {
+            result = true;
+        }
+        return result;
+    }
+
     public String getDashedWord() {
         return this.makeDashedWord();
     }
