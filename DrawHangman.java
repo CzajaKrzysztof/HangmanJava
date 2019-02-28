@@ -25,7 +25,7 @@ public class DrawHangman {
 
         file_name = this.asciiArts.get(lives);
         DataManager manager = new DataManager();
-        hangmanArt = manager.getAsciiArt(file_name);
+        hangmanArt = manager.getFileContentArray(file_name);
 
         return hangmanArt;
     }

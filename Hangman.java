@@ -49,16 +49,17 @@ public class Hangman {
                 }
                 user.increaseTries();
             }
-            if (!isGameWon) {
-                clearScreen();
-                drawArt.printHangman(user.getLives());
-                System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
-            }
-            else {
+            if (isGameWon) {
                 clearScreen();
                 user.setEndTime();
                 drawArt.printHangman(user.getLives());
                 System.out.println(user.getName() + ", you won after " + user.getTries() + " tries! You playd for " + user.getTime() + " seconds.");
+                user.calculateScore(secretWord.getCapital());
+            }
+            else {
+                clearScreen();
+                drawArt.printHangman(user.getLives());
+                System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
             }
             String playAgain = "";
             while (!(playAgain.equals("y") || playAgain.equals("n"))) {

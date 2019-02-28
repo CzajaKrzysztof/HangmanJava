@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class DataManager {
     ArrayList<Country> countries = new ArrayList<Country>();
@@ -27,21 +30,35 @@ public class DataManager {
         }
     }
 
-    public ArrayList<String> getAsciiArt(String file_name) {
-        ArrayList<String> asciiArt = new ArrayList<String>();
+    public ArrayList<String> getFileContentArray(String file_name) {
+        ArrayList<String> contentArray = new ArrayList<String>();
         Scanner reader;
         try {
             File myFile = new File(file_name);
             reader = new Scanner(myFile);
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                asciiArt.add(line);
+                contentArray.add(line);
             }
             reader.close();
-            return asciiArt;
+            return contentArray;
         } catch (Exception e) {
             System.out.println("We couldn't read the file. Error: " + e.getMessage());
-            return asciiArt;
+            return contentArray;
+        }
+    }
+
+    public void saveStringToFile(String dataToWrite) {
+        try {
+            File file = new File("highs_score.txt");
+            FileWriter fileWriter = new FileWriter(file, true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println(dataToWrite);
+            fileWriter.flush();
+            fileWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

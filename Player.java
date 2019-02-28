@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.sql.DatabaseMetaData;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Player {
     private String name;
@@ -90,8 +93,17 @@ public class Player {
         this.endTime = 0;
     }
 
-    public String toString() {
-        return this.name + " " + this.tries + " " + this.lives + " " + this.startTime + " " + this.endTime + " " + this.getBasGuesses();
+    public void calculateScore(String capital) {
+        String scoreString = this.getName() + " | " + this.getDate() + " | " + this.getTime() + " | " + capital;
+        DataManager manager = new DataManager();
+        manager.saveStringToFile(scoreString);
+
+    }
+
+    private String getDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
     }
 
 }
