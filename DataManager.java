@@ -19,7 +19,7 @@ public class DataManager {
             return countries;
         } catch (Exception e) {
             System.out.println("We couldn't read the file. Error: " + e.getMessage());
-            return this.countries; // we exit the method
+            return this.countries;
         }
     }
 }

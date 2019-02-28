@@ -58,11 +58,16 @@ public class Player {
     }
 
     public String getBasGuesses() {
-        String result = this.badGuesses.get(0);
-        for (int i = 1; i < this.badGuesses.size(); i++) {
-            result += ", " + this.badGuesses.get(i);
+        String result = "";
+        if (!badGuesses.isEmpty()) {
+            result = this.badGuesses.get(0);
+            for (int i = 1; i < this.badGuesses.size(); i++) {
+                result += ", " + this.badGuesses.get(i);
+            }
+        } else {
+            result = "";
         }
-        return result;
+            return result;
     }
 
     public String toString() {
