@@ -8,11 +8,5 @@ public class Hangman {
         Player user = new Player(name);
         //Zaczac od stowrzenia obiektu Word
         
-        
-        // DataManager manager = new DataManager();
-        // ArrayList<Country> allCountries = manager.getCountries();
-        // for (Country country: allCountries) {
-        //     System.out.println(country.toString());
-        // }
     }
 }
