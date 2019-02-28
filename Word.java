@@ -42,6 +42,14 @@ public class Word {
         return result;
     }
 
+    public boolean isInputACorrectGuess(String input) {
+        boolean result = false;
+        if (chosenCountry.getCapital().toUpperCase().equals(input)) {
+            result = true;
+        }
+        return result;
+    }
+
     public boolean isInputInCapital(String input) {
         boolean result = false;
         if (chosenCountry.getCapital().toUpperCase().contains(input)) {
