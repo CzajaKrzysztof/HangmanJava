@@ -82,8 +82,12 @@ public class Player {
             return result;
     }
 
-    public void resetLives() {
+    public void reset() {
         this.lives = 10;
+        this.tries = 0;
+        this.badGuesses.clear();
+        this.startTime = 0;
+        this.endTime = 0;
     }
 
     public String toString() {

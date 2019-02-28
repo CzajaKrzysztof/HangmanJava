@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Hangman {
     public static void main(String[] args) {
+        clearScreen();
         Scanner reader = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String name = reader.nextLine();
@@ -9,13 +10,13 @@ public class Hangman {
         boolean quitGame = false;
         while (!quitGame) {
             Word secretWord = new Word();
-            if (args.length > 0 && args[0].equals("-demo")){
-                System.out.println("Secret word: " + secretWord.getCapital());
-            }
             boolean isGameWon = false;
             user.setStartTime();
-            
             while (user.getLives() > 0 && !isGameWon) {
+                clearScreen();
+                if (args.length > 0 && args[0].equals("-demo")){
+                    System.out.println("Secret word: " + secretWord.getCapital());
+                }
                 System.out.println("Users lives: " + user.getLives());
                 if (user.getLives() < 5) {
                     System.out.println("HINT: what is the capital of " + secretWord.getCountryName());
@@ -48,12 +49,12 @@ public class Hangman {
                 user.increaseTries();
             }
             if (!isGameWon) {
+                clearScreen();
                 System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
-                user.resetLives();
             }
             else {
+                clearScreen();
                 user.setEndTime();
-                
                 System.out.println(user.getName() + ", you won after " + user.getTries() + " tries! You playd for " + user.getTime() + " seconds.");
             }
             String playAgain = "";
@@ -64,7 +65,18 @@ public class Hangman {
             if (playAgain.equals("n")) {
                 quitGame = true;
             }
+            else {
+                user.reset();
+                secretWord.reset();
+            }
         }
         
     }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    }
+
+    
 }

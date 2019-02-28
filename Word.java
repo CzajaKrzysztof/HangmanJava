@@ -74,4 +74,8 @@ public class Word {
     public String getCapital() {
         return this.chosenCountry.getCapital();
     }
+
+    public void reset() {
+        this.correctGuesses.clear();
+    }
 }
