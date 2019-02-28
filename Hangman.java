@@ -19,7 +19,6 @@ public class Hangman {
                 if (args.length > 0 && args[0].equals("-demo")){
                     System.out.println("Secret word: " + secretWord.getCapital());
                 }
-                System.out.println("Users lives: " + user.getLives());
                 if (user.getLives() < 5) {
                     System.out.println("HINT: what is the capital of " + secretWord.getCountryName());
                 }
