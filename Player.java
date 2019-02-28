@@ -37,7 +37,7 @@ public class Player {
     }
 
     public long getTime() {
-        return this.endTime - this.startTime;
+        return (this.endTime - this.startTime) / 1000;
     }
 
     public void increaseTries() {
@@ -53,12 +53,16 @@ public class Player {
             this.lives = 0;
         }
         else {
-            this.lives--;
+            this.lives -= amount;
         }
     }
 
     public int getLives() {
         return this.lives;
+    }
+
+    public int getTries() {
+        return this.tries;
     }
 
     public void addToBasGuesses(String badGuess) {

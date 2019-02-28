@@ -9,21 +9,24 @@ public class Hangman {
         boolean quitGame = false;
         while (!quitGame) {
             Word secretWord = new Word();
-            System.out.println("Country name: " + secretWord.getCountryName());
-            System.out.println("Secret word: " + secretWord.getCapital());
+            if (args.length > 0 && args[0].equals("-demo")){
+                System.out.println("Secret word: " + secretWord.getCapital());
+            }
             boolean isGameWon = false;
             user.setStartTime();
             
             while (user.getLives() > 0 && !isGameWon) {
                 System.out.println("Users lives: " + user.getLives());
+                if (user.getLives() < 5) {
+                    System.out.println("HINT: what is the capital of " + secretWord.getCountryName());
+                }
                 System.out.println("Dashed word: " + secretWord.getDashedWord());
-                System.out.print("Enter character or word: ");
+                System.out.println("Your bad guesses: " + user.getBasGuesses());
+                System.out.print("Enter a character or a word: ");
                 String input = reader.nextLine().toUpperCase();
                 if (input.length() > 1) {
                     if (secretWord.isInputACorrectGuess(input)) {
                         isGameWon = true;
-                        System.out.println("You won!");
-                        user.setEndTime();
                     }
                     else {
                         user.decreaseLive(2);
@@ -35,9 +38,6 @@ public class Hangman {
                         secretWord.addToCorrectGuesses(input);
                         if (secretWord.isWordGuessed()) {
                             isGameWon = true;
-                            System.out.println("You won!");
-                            user.setEndTime();
-
                         }
                     }
                     else {
@@ -48,8 +48,13 @@ public class Hangman {
                 user.increaseTries();
             }
             if (!isGameWon) {
-                System.out.println("You lost!");
+                System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
                 user.resetLives();
+            }
+            else {
+                user.setEndTime();
+                
+                System.out.println(user.getName() + ", you won after " + user.getTries() + " tries! You playd for " + user.getTime() + " seconds.");
             }
             String playAgain = "";
             while (!(playAgain.equals("y") || playAgain.equals("n"))) {
