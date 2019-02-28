@@ -7,6 +7,7 @@ public class Hangman {
         System.out.print("Enter your name: ");
         String name = reader.nextLine();
         Player user = new Player(name);
+        DrawHangman drawArt = new DrawHangman();
         boolean quitGame = false;
         while (!quitGame) {
             Word secretWord = new Word();
@@ -14,6 +15,7 @@ public class Hangman {
             user.setStartTime();
             while (user.getLives() > 0 && !isGameWon) {
                 clearScreen();
+                drawArt.printHangman(user.getLives());
                 if (args.length > 0 && args[0].equals("-demo")){
                     System.out.println("Secret word: " + secretWord.getCapital());
                 }
@@ -50,11 +52,13 @@ public class Hangman {
             }
             if (!isGameWon) {
                 clearScreen();
+                drawArt.printHangman(user.getLives());
                 System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
             }
             else {
                 clearScreen();
                 user.setEndTime();
+                drawArt.printHangman(user.getLives());
                 System.out.println(user.getName() + ", you won after " + user.getTries() + " tries! You playd for " + user.getTime() + " seconds.");
             }
             String playAgain = "";
