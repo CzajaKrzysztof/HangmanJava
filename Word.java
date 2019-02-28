@@ -6,6 +6,7 @@ public class Word {
 
     public Word() {
         this.correctGuesses = new ArrayList<String>();
+        this.correctGuesses.add(" ");
         this.chosenCountry = this.choseRandomCountry();
     }
 
@@ -36,7 +37,7 @@ public class Word {
     public boolean isWordGuessed() {
         boolean result = false;
         String dashedWord = this.makeDashedWord();
-        if (dashedWord.contains("_")) {
+        if (!dashedWord.contains("_")) {
             result = true;
         }
         return result;
@@ -48,6 +49,10 @@ public class Word {
             result = true;
         }
         return result;
+    }
+
+    public void addToCorrectGuesses(String input) {
+        this.correctGuesses.add(input);
     }
 
     public boolean isInputInCapital(String input) {
@@ -63,7 +68,7 @@ public class Word {
     }
 
     public String getCountryName() {
-        return this.chosenCountry.getCapital();
+        return this.chosenCountry.getName();
     }
 
     public String getCapital() {

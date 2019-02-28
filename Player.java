@@ -24,6 +24,14 @@ public class Player {
         this.startTime = System.currentTimeMillis();
     }
 
+    public long getStartTime() {
+        return this.startTime;
+    }
+
+    public long getEndTime() {
+        return this.endTime;
+    }
+
     public void setEndTime() {
         this.endTime = System.currentTimeMillis();
     }
@@ -68,6 +76,10 @@ public class Player {
             result = "";
         }
             return result;
+    }
+
+    public void resetLives() {
+        this.lives = 10;
     }
 
     public String toString() {
