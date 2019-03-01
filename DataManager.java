@@ -48,6 +48,25 @@ public class DataManager {
         }
     }
 
+    public ArrayList<Score> getScores() {
+        ArrayList<Score> scoreArrayList = new ArrayList<Score>();
+        Scanner reader;
+        try {
+            File scoreFile = new File("highs_score.txt");
+            reader = new Scanner(scoreFile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] score = line.split(" \\| ");
+                scoreArrayList.add(new Score(score[0], score[1], score[2], score[3], score[4]));
+            }
+            reader.close();
+            return scoreArrayList;
+        } catch (Exception e) {
+            System.out.println("We couldn't read the file. Error: " + e.getMessage());
+            return scoreArrayList;
+        }
+    }
+
     public void saveStringToFile(String dataToWrite) {
         try {
             File file = new File("highs_score.txt");

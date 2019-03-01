@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.sql.DatabaseMetaData;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -94,7 +93,7 @@ public class Player {
     }
 
     public void calculateScore(String capital) {
-        String scoreString = this.getName() + " | " + this.getDate() + " | " + this.getTime() + " | " + capital;
+        String scoreString = this.getName() + " | " + this.getDate() + " | " + this.getTime() + " | " + this.getTries() + " | " + capital;
         DataManager manager = new DataManager();
         manager.saveStringToFile(scoreString);
 

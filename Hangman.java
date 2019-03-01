@@ -61,6 +61,7 @@ public class Hangman {
                 drawArt.printHangman(user.getLives());
                 System.out.println(user.getName() + ", you lost! Capital of " + secretWord.getCountryName() + " is " + secretWord.getCapital());
             }
+            printHighScore();
             String playAgain = "";
             while (!(playAgain.equals("y") || playAgain.equals("n"))) {
                 System.out.print("Do you want to play again(y/n): ");
@@ -68,6 +69,7 @@ public class Hangman {
             }
             if (playAgain.equals("n")) {
                 quitGame = true;
+                reader.close();
             }
             else {
                 user.reset();
@@ -80,6 +82,26 @@ public class Hangman {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");  
         System.out.flush();
+    }
+
+    public static void printHighScore() {
+        Score highScore = new Score();
+        ArrayList<Score> usersHighScore = Score.getUsersScore();
+        usersHighScore.sort(Comparator.comparing(Score::getTries));
+        System.out.println("High score:");
+        if (!usersHighScore.isEmpty()){
+            int upperLimit;
+            if (usersHighScore.size() < 10) {
+                upperLimit = usersHighScore.size();
+            }
+            else {
+                upperLimit = 10;
+            }
+            for (int i = 0; i < upperLimit; i++) {
+                Score score = usersHighScore.get(i);
+                System.out.println(score.toString());
+            }
+        }
     }
 
     
